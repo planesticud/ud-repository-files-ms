@@ -1,0 +1,37 @@
+version: '3'
+networks:
+ web:
+
+services:
+  docker-wordpress:
+     build: .
+     container_name: docker-wordpress
+     restart: on-failure
+     env_file:
+        - .env
+     volumes:
+        - "$PWD/files:/usr/src/app/files"
+     networks:
+        - web
+     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerwp.rule=Host(`pruebalaser.com`) && PathPrefix(`/createpages`)"
+      - "traefik.http.routers.dockerwp.middlewares=pma-stripprefix"
+      - "traefik.http.middlewares.pma-stripprefix.stripprefix.prefixes=/createpages"
+      #- "traefik.http.routers.wordpress.tls=true"
+      #- "traefik.http.routers.wordpress.tls.certresolver=le"
+      - "traefik.http.services.dockerwp.loadbalancer.server.port=3000"  
+  postgres_laser_wordpress:
+     container_name: postgres_laser_wordpress
+     image: postgres
+     environment:
+       POSTGRES_USER: ${POSTGRES_USER:-postgres}
+       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+       PGDATA: /data/postgres
+     networks:
+       - web
+     restart: unless-stopped
+          
+networks:
+  web:
+    external: true
