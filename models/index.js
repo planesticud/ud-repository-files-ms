@@ -1,5 +1,5 @@
-const pages = require('./pages')
+const general = require('./general')
 
 module.exports = {
-    pages
+    general
 }
