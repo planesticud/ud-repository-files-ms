@@ -1,7 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-var cors = require('cors')
+const fileUpload = require('express-fileupload')
+const cors = require('cors')
 
 const logger = require('./utils/logger')
 const { port } = require('./config')
@@ -14,7 +15,12 @@ app.use(morgan('tiny'))
 app.use(cors())
 
 app.use(bodyParser.json())
+app.use(fileUpload({
+    createParentPath: true
+}));
+
 app.use(routes)
+
 
 app.listen(port, () => {
     log.info(`servidor en puerto ${port}`)

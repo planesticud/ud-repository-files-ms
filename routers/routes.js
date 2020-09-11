@@ -4,7 +4,7 @@ const { OK } = require('http-status-codes')
 const wrap = require('../wrap.js')
 const { routers } = require('../constants')
 
-const { generalController, metadataController } = require('../controllers')
+const { generalController, metadataController, filesController } = require('../controllers')
 
 const router = express.Router()
 
@@ -25,6 +25,7 @@ router.put(routers.METADATA, wrap(metadataController.updateMetadata))
 
 router.delete(routers.METADATA, wrap(metadataController.deleteMetadata))
 
+router.post(routers.FILES, wrap(filesController.createFiles))
 
 router.get(routers.HEALTH, wrap(async (req, res) => {
     res.status(OK).json({ message: 'OK' })
