@@ -10,7 +10,7 @@ module.exports = {
         client: 'postgresql',
         connection: {
           host: DB_HOST || 'localhost',
-          database: DB_NAME || 'wordpress_laser',
+          database: DB_NAME || 'ud-repository-files-ms',
           user:     DB_USER || 'postgres',
           password: DB_PASSWORD || 'changeme'
       },
