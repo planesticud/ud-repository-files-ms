@@ -36,6 +36,6 @@ jobs:
         name: send custom message with args
         uses: appleboy/telegram-action@master
         with:
-           to: ${{ secrets.TELEGRAM_TO }}
-           token: ${{ secrets.TELEGRAM_TOKEN }}
-           args: ${{ github.event_name }} UD RULES.
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          args: ${{ github.event_name }} UD RULES.
