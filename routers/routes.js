@@ -31,8 +31,5 @@ router.get(routers.HEALTH, wrap(async (req, res) => {
     res.status(OK).json({ message: 'OK' })
   }))
 
-  router.get('purebaci', wrap(async (req, res) => {
-    res.status(OK).json({ message: 'todo ok en ci' })
-  }))
 
 module.exports = router
