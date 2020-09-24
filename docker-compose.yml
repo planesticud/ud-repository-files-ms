@@ -4,7 +4,7 @@ networks:
 
 services:
    ud-repository-files-ms:
-     build: .
+     image: damillano93/ud-repository-files-ms:latest
      container_name: ud-repository-files-ms
      restart: on-failure
      env_file:
