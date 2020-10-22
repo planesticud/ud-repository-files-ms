@@ -27,9 +27,11 @@ anotationController.createAnotation = async (req, res) => {
     log.error(`createAnotation invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('anotation', body)
-  
-  res.sendStatus(CREATED)
+  const newAnotation = await dbQueries.insert('anotation', body)
+  log.info(`anotation created with id=${newAnotation}`)
+  res.status(CREATED).json({
+    id: newAnotation[0]
+  })
 }
 
 anotationController.deleteAnotation = async (req, res) => {

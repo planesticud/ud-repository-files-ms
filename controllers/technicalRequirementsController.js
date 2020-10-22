@@ -27,9 +27,11 @@ technicalRequirementsController.createTechnicalRequirements = async (req, res) =
     log.error(`createTechnicalRequirements invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('technical_requirements', body)
-  
-  res.sendStatus(CREATED)
+  const newtechnicalRequirements = await dbQueries.insert('technical_requirements', body)
+  log.info(`technical_requirements created with id=${newtechnicalRequirements}`)
+  res.status(CREATED).json({
+    id: newtechnicalRequirements[0]
+  })
 }
 
 technicalRequirementsController.deleteTechnicalRequirements = async (req, res) => {

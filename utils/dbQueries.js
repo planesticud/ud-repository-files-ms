@@ -4,7 +4,7 @@ const db = require('./db')
 const dbQueries = module.exports
 
 dbQueries.insert = async (table, data) => {
-    const query = await db(table).insert(data)
+    const query = await db(table).insert(data).returning('id')
     return query
 }
 

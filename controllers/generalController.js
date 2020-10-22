@@ -27,9 +27,11 @@ generalController.createGeneral = async (req, res) => {
     log.error(`createGeneral invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('general', body)
-  
-  res.sendStatus(CREATED)
+  const newGeneral = await dbQueries.insert('general', body)
+  log.info(`general created with id=${newGeneral}`)
+  res.status(CREATED).json({
+    id: newGeneral[0]
+  })
 }
 
 generalController.deleteGeneral = async (req, res) => {

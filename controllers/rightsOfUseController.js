@@ -27,9 +27,11 @@ rightsOfUseController.createRightsOfUse = async (req, res) => {
     log.error(`createRightsOfUse invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('rights_of_use', body)
-  
-  res.sendStatus(CREATED)
+  const newRightsOfUse = await dbQueries.insert('rights_of_use', body)
+  log.info(`rights_of_use created with id=${newRightsOfUse}`)
+  res.status(CREATED).json({
+    id: newRightsOfUse[0]
+  })
 }
 
 rightsOfUseController.deleteRightsOfUse = async (req, res) => {

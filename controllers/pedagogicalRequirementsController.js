@@ -27,9 +27,11 @@ pedagogicalRequirementsController.createPedagogicalRequirements = async (req, re
     log.error(`createPedagogicalRequirements invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('pedagogical_requirements', body)
-  
-  res.sendStatus(CREATED)
+  const newPedagogicalRequirements = await dbQueries.insert('pedagogical_requirements', body)
+  log.info(`pedagogical_requirements created with id=${newPedagogicalRequirements}`)
+  res.status(CREATED).json({
+    id: newPedagogicalRequirements[0]
+  })
 }
 
 pedagogicalRequirementsController.deletePedagogicalRequirements = async (req, res) => {

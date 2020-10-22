@@ -27,9 +27,11 @@ lifecycleController.createLifecycle = async (req, res) => {
     log.error(`createLifecycle invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('lifecycle', body)
-  
-  res.sendStatus(CREATED)
+  const newLifeCycle = await dbQueries.insert('lifecycle', body)
+  log.info(`lifecycle created with id=${newLifeCycle}`)
+  res.status(CREATED).json({
+    id: newLifeCycle[0]
+  })
 }
 
 lifecycleController.deleteLifecycle = async (req, res) => {

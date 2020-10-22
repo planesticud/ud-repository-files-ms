@@ -27,9 +27,11 @@ classificationController.createClassification = async (req, res) => {
     log.error(`createClassification invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('classification', body)
-  
-  res.sendStatus(CREATED)
+  const newClassification = await dbQueries.insert('classification', body)
+  log.info(`classification created with id=${newClassification}`)
+  res.status(CREATED).json({
+    id: newClassification[0]
+  })
 }
 
 classificationController.deleteClassification = async (req, res) => {

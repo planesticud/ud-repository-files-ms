@@ -27,9 +27,11 @@ metadataController.createMetadata = async (req, res) => {
     log.error(`createMetadata invalid body `)
       res.status(BAD_REQUEST).json({error: errors})
   }
-  dbQueries.insert('metadata', body)
-  
-  res.sendStatus(CREATED)
+  const newMetadata = await dbQueries.insert('metadata', body)
+  log.info(`metadata created with id=${newMetadata}`)
+  res.status(CREATED).json({
+    id: newMetadata[0]
+  })
 }
 
 metadataController.deleteMetadata = async (req, res) => {
