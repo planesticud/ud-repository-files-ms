@@ -1,5 +1,5 @@
 # Usar  imagen de nodejs
-FROM node:12-alpine
+FROM node:alpine
 # Crear carpeta de trabajo
 RUN mkdir -p /usr/src/app
 # seleccionar carpeta de trabajo
