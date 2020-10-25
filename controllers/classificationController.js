@@ -46,7 +46,7 @@ classificationController.updateClassification = async (req, res) => {
   const { id } = req.query
   log.info(`updateClassification id=${id} body=${JSON.stringify(body)}`)
   
-  const errors = isValid(body,classification.classificationSchemaUpdate)
+  const errors = isValid(body,classification.classificationSchema)
   if(errors.length){
     log.error(`updateClassification invalid body `)
       res.status(400).json({error: errors})
