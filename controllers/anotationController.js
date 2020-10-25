@@ -46,7 +46,7 @@ anotationController.updateAnotation = async (req, res) => {
   const { id } = req.query
   log.info(`updateAnotation id=${id} body=${JSON.stringify(body)}`)
   
-  const errors = isValid(body,anotation.anotationSchemaUpdate)
+  const errors = isValid(body,anotation.anotationSchema)
   if(errors.length){
     log.error(`updateAnotation invalid body `)
       res.status(400).json({error: errors})
