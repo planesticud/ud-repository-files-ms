@@ -46,7 +46,7 @@ technicalRequirementsController.updateTechnicalRequirements = async (req, res) =
   const { id } = req.query
   log.info(`updateTechnicalRequirements id=${id} body=${JSON.stringify(body)}`)
   
-  const errors = isValid(body,technicalRequirements.technicalRequirementsSchemaUpdate)
+  const errors = isValid(body,technicalRequirements.technicalRequirementsSchema)
   if(errors.length){
     log.error(`updateTechnicalRequirements invalid body `)
       res.status(400).json({error: errors})
