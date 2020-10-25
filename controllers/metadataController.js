@@ -30,7 +30,7 @@ metadataController.createMetadata = async (req, res) => {
   const newMetadata = await dbQueries.insert('metadata', body)
   log.info(`metadata created with id=${newMetadata}`)
   res.status(CREATED).json({
-    id: newMetadata[0]
+    id: newMetadata
   })
 }
 
