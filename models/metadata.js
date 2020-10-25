@@ -3,14 +3,14 @@ const metadataSchema = {
     'type': 'object',
     'properties': {
         'email': { 'type': 'string' },
-        'general':  { 'type': 'string' },
-        'lifecycle':  { 'type': 'string' },
-        'meta_metadata': {  'type': 'string' },
-        'technical_requirements': {  'type': 'string' },
-        'pedagogical_requirements': {  'type': 'string' },
-        'rights_of_use': {  'type': 'string' },
-        'anotation': {  'type': 'string' },
-        'classification': {  'type': 'string' }
+        'general':  { 'type': 'int' },
+        'lifecycle':  { 'type': 'int' },
+        'meta_metadata': {  'type': 'int' },
+        'technical_requirements': {  'type': 'int' },
+        'pedagogical_requirements': {  'type': 'int' },
+        'rights_of_use': {  'type': 'int' },
+        'anotation': {  'type': 'int' },
+        'classification': {  'type': 'int' }
     },
     'required': ['email','general']
 };
