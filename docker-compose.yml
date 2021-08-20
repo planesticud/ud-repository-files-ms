@@ -4,7 +4,7 @@ networks:
 
 services:
    ud-repository-files-ms:
-     build: .
+     image: planesticud/ud-repository-files-ms
      container_name: ud-repository-files-ms
      restart: on-failure
      env_file:
