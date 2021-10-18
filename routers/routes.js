@@ -19,6 +19,17 @@ const {
 
 const router = express.Router()
 
+router.get(routers.GENERAL+"/contar", wrap(generalController.contarListGeneral))
+router.get(routers.LIFECYCLE+"/contar", wrap(lifecycleController.contarListLifecycle))
+router.get(routers.META_METADATA+"/contar", wrap(metametadataController.contarListMetametadata))
+router.get(routers.TECHNICAL_REQUIEREMENTS+"/contar", wrap(technicalRequirementsController.contarListTechnicalRequirements))
+router.get(routers.PEDAGOGICAL_REQUIEREMENTS+"/contar", wrap(pedagogicalRequirementsController.contarListPedagogicalRequirements))
+router.get(routers.RIGHTS_OF_USE+"/contar", wrap(rightsOfUseController.contarListRightsOfUse))
+router.get(routers.ANOTATIONS+"/contar", wrap(anotationController.contarListAnotation))
+router.get(routers.CLASSIFICACION+"/contar", wrap(classificationController.contarListClassification))
+router.get(routers.METADATA+"/contar", wrap(metadataController.contarListMetadata))
+
+
 router.get(routers.GENERAL, wrap(generalController.listGeneral))
 
 router.post(routers.GENERAL, wrap(generalController.createGeneral))
