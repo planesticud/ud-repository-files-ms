@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const anotationController = module.exports
 const log = logger.getLogger('anotationController')
 
+anotationController.contarListAnotation = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listAnotation ${JSON.stringify(where)} `)
+  const anotation = (await dbQueries.select('anotation', where)).length
+  res.json(anotation)
+  }
+
 anotationController.listAnotation = async (req, res) => {
 
 let where = req.query

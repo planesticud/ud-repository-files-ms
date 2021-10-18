@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const metadataController = module.exports
 const log = logger.getLogger('metadataController')
 
+metadataController.contarListMetadata = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listMetadata ${JSON.stringify(where)} `)
+  const metadata = (await dbQueries.select('metadata', where)).length
+  res.json(metadata)
+  }
+
 metadataController.listMetadata = async (req, res) => {
 
 let where = req.query

@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const technicalRequirementsController = module.exports
 const log = logger.getLogger('technicalRequirementsController')
 
+technicalRequirementsController.contarListTechnicalRequirements = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listTechnicalRequirements ${JSON.stringify(where)} `)
+  const technicalRequirements = (await dbQueries.select('technical_requirements', where)).length
+  res.json(technicalRequirements)
+  }
+
 technicalRequirementsController.listTechnicalRequirements = async (req, res) => {
 
 let where = req.query

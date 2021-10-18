@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const classificationController = module.exports
 const log = logger.getLogger('classificationController')
 
+classificationController.contarListClassification = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listClassification ${JSON.stringify(where)} `)
+  const classification = (await dbQueries.select('classification', where)).length
+  res.json(classification)
+  }
+
 classificationController.listClassification = async (req, res) => {
 
 let where = req.query

@@ -8,6 +8,18 @@ const dbQueries = require('../utils/dbQueries')
 const lifecycleController = module.exports
 const log = logger.getLogger('lifecycleController')
 
+lifecycleController.contarListLifecycle = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listLifecycle ${JSON.stringify(where)} `)
+  const lifecycle = (await dbQueries.select('lifecycle', where)).length
+  res.json(lifecycle)
+  }
+
+
 lifecycleController.listLifecycle = async (req, res) => {
 
 let where = req.query

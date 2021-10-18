@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const rightsOfUseController = module.exports
 const log = logger.getLogger('rightsOfUseController')
 
+rightsOfUseController.contarListRightsOfUse = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listRightsOfUse ${JSON.stringify(where)} `)
+  const rightsOfUse = (await dbQueries.select('rights_of_use', where)).length
+  res.json(rightsOfUse)
+  }
+
 rightsOfUseController.listRightsOfUse = async (req, res) => {
 
 let where = req.query

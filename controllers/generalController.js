@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const generalController = module.exports
 const log = logger.getLogger('generalController')
 
+generalController.contarListGeneral = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listGeneral ${JSON.stringify(where)} `)
+  const general = (await dbQueries.select('general', where)).length
+  res.json(general)
+  }
+
 generalController.listGeneral = async (req, res) => {
 
 let where = req.query

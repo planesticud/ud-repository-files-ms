@@ -8,6 +8,17 @@ const dbQueries = require('../utils/dbQueries')
 const pedagogicalRequirementsController = module.exports
 const log = logger.getLogger('pedagogicalRequirementsController')
 
+pedagogicalRequirementsController.contarListPedagogicalRequirements = async (req, res) => {
+
+  let where = req.query
+  if (Object.keys(where).length === 0) {
+      where = {}
+  }
+  log.info(`listPedagogicalRequirements ${JSON.stringify(where)} `)
+  const pedagogicalRequirements = (await dbQueries.select('pedagogical_requirements', where)).length
+  res.json(pedagogicalRequirements)
+  }
+
 pedagogicalRequirementsController.listPedagogicalRequirements = async (req, res) => {
 
 let where = req.query
