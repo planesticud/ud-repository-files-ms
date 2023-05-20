@@ -1,6 +1,6 @@
 version: '3'
 networks:
- campus_virtual:
+ dev_planestic:
 
 services:
    ud-repository-files-ms:
@@ -10,8 +10,8 @@ services:
      env_file:
         - .env
      networks:
-        - campus_virtual          
+        - dev_planestic          
 
 networks:
-  campus_virtual:
+  dev_planestic:
     external: true
